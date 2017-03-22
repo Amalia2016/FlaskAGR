@@ -13,23 +13,24 @@ import compute
 
 def get_input():
     """Get input data from the command line."""
-    ticker = str.capitalize(sys.argv[1])
+    ticker = sys.argv[1]
+    ticker = ticker.capitalize()
     p1 = sys.argv[2]
     p2 = sys.argv[3]
     p3 = sys.argv[4]
     p4 = sys.argv[5]
-    Cols = []
+    cols = []
     if p1:
-        Cols.append('Close')
+        cols.append('close')
     if p2:
-        Cols.append('Adj_Close')   
+        cols.append('adj_close')   
     if p3:
-        Cols.append('Open')
+        cols.append('open')
     if p4:
-        Cols.append('Adj_Open')
-    return ticker, Cols
+        cols.append('adj_open')
+    return ticker, cols
 
-def present_output(ticker, Cols):
+def present_output(ticker, cols):
     """Write results to terminal window."""
-    s = compute.compute(ticker, Cols)
+    s = compute.compute(ticker, cols)
     print 'Generated Graph for %: %' % (ticker, s)

@@ -10,6 +10,6 @@ p1 = False
 p2 = False
 p3 = False
 p4 = False
-Cols = []
+cols = []
 
 s = None        # output

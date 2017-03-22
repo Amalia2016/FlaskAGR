@@ -22,21 +22,21 @@ def index():
   form = InputForm(request.form)
   if request.method == 'POST' and form.validate():
       ticker = form.ticker.data
+      ticker = ticker.capitalize()
       p1 = form.p1.data
       p2 = form.p2.data
       p3 = form.p3.data
       p4 = form.p4.data
-      Cols = []
+      cols = []
       if p1:
-          Cols.append('Close')
+          cols.append('close')
       if p2:
-          Cols.append('Adj_Close')   
+          cols.append('adj_close')   
       if p3:
-          Cols.append('Open')
+          cols.append('open')
       if p4:
-          Cols.append('Adj_Open')
-	  s = compute(ticker, Cols)
-	  print "Hello initial"
+          cols.append('adj_open')
+	  s = compute(ticker, cols)
 	  return render_template("view_output.html", form=form, s=s)
   else:
       return render_template("view_input.html", form=form)
