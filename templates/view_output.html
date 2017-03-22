@@ -11,7 +11,7 @@
 		<form method=post action="">
   			<h1>
 			Generated graph for {{ form.ticker.data }}<br>
-			<a href="file://localhost/~/Documents/GitHub/FlaskAGR/FlaskAGR/Templates/view_input.html">Back</a>
+			<a href='{{ url_for('Templates', filename='view_input.html')}}'>Back</a>
 			</h1>
 			<br>
 			<h3> {{s}} </h3>
