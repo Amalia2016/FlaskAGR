@@ -8,10 +8,10 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<form method=post action="">
+		<form method=post action="index">
   			<h1>
 			Generated graph for {{ form.ticker.data }}<br>
-			<a href='{{ url_for('Templates', filename='view_input.html')}}'>Back</a>
+			<input type="submit" value="Back">
 			</h1>
 			<br>
 			<h3> {{s}} </h3>

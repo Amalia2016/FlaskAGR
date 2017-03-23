@@ -22,7 +22,7 @@ def index():
   form = InputForm(request.form)
   if request.method == 'POST' and form.validate():
       ticker = form.ticker.data
-      ticker = ticker.capitalize()
+#      ticker = ticker.capitalize()
       p1 = form.p1.data
       p2 = form.p2.data
       p3 = form.p3.data
