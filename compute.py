@@ -11,16 +11,16 @@ Created on Tue Mar 21 22:31:14 2017
 import quandl
 
 import numpy as np
-#import pandas as pd
+import pandas as pd
 
-import io
+#import io
 
 from bokeh.layouts import gridplot
 from bokeh.plotting import figure, show, output_file
 from bokeh.resources import CDN, Resources, INLINE
 from bokeh.embed import components, autoload_static
-from bokeh.util.browser import view
-from jinja2 import Template
+#from bokeh.util.browser import view
+#from jinja2 import Template
 
 def datetime(x):
     return np.array(x, dtype=np.datetime64)
