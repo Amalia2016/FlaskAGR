@@ -8,9 +8,9 @@ Created on Tue Mar 21 22:31:14 2017
 #import matplotlib.pyplot as plt
 #import simplejson as json
 #import requests
+import numpy as np
 import quandl
 
-import numpy as np
 import pandas as pd
 
 #import io
