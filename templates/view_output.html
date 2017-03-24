@@ -2,19 +2,18 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>User Input</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<title>{{ ticker }} Stock Prices Plot</title>
+	
+		{{ js_resources | safe }}
+		{{ css_resources | safe }}
+				
 	</head>
 	<body>
-		<form method=post action="index">
-  			<h1>
-			Generated graph for {{ form.ticker.data }}<br>
-			<input type="submit" value="Back">
-			</h1>
-			<br>
-			<h3> {{s}} </h3>
-		 </form>
+  			<h1> Generated graph for {{ ticker }}<br> <a href="/index">Back</a> </h1> <br>
+			
+			{{ plot_div | safe }}
+			{{ plot_script | safe }}
+
+		<!-- {{ tag | safe}} --> 
 	</body>
 </html>

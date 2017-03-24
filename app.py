@@ -8,6 +8,7 @@ app = Flask(__name__)
 # Model
 class InputForm(Form):
     ticker = StringField(validators=[validators.InputRequired()])
+#    ticker = StringField()
     p1 = BooleanField()
     p2 = BooleanField()
     p3 = BooleanField()
@@ -21,8 +22,9 @@ def main():
 def index():
   form = InputForm(request.form)
   if request.method == 'POST' and form.validate():
+#  if request.method == 'POST':
       ticker = form.ticker.data
-#      ticker = ticker.capitalize()
+      ticker = ticker.upper()
       p1 = form.p1.data
       p2 = form.p2.data
       p3 = form.p3.data
@@ -36,11 +38,14 @@ def index():
           cols.append('open')
       if p4:
           cols.append('adj_open')
-	  s = compute(ticker, cols)
-	  return render_template("view_output.html", form=form, s=s)
+      s = True
+      s, js_resources, css_resources, script, div = compute(ticker, cols)
+      if s:
+          return render_template("view_output.html", js_resources=js_resources, css_resources=css_resources, plot_script=script, plot_div=div, ticker=ticker)
+      else:
+          return render_template("view_error.html")
   else:
       return render_template("view_input.html", form=form)
-  #return render_template('index.html')
 
 if __name__ == '__main__':
   #app.run(port=33507)
