@@ -59,8 +59,8 @@ def plot(ticker, cols, df):
     return js_resources, css_resources, script, div
 
 def compute(ticker, cols):
-    quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
-    data = quandl.get_table('WIKI/PRICES', ticker = ticker)
+#    quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
+#    data = quandl.get_table('WIKI/PRICES', ticker = ticker)
     data=get_load_json(ticker)
     if data.empty:
         s = False
