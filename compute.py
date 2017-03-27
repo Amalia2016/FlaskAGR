@@ -6,7 +6,10 @@ Created on Tue Mar 21 22:31:14 2017
 """
 
 #import matplotlib.pyplot as plt
-#import simplejson as json
+import simplejson as json
+import urllib2
+import requests
+
 #import requests
 import numpy as np
 import quandl
@@ -56,9 +59,9 @@ def plot(ticker, cols, df):
     return js_resources, css_resources, script, div
 
 def compute(ticker, cols):
-    # https://www.quandl.com/api/v3/datasets/EOD/[ticker].json?api_key=byL6HFiAJCnKKXttWCW7&collapse=monthly&start_date=1990-01-01
     quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
     data = quandl.get_table('WIKI/PRICES', ticker = ticker)
+    data=get_load_json(ticker)
     if data.empty:
         s = False
         return s,"","","",""
@@ -67,3 +70,18 @@ def compute(ticker, cols):
         df = data.filter(items = ['date']+cols)
         js_resources, css_resources, script, div = plot(ticker, cols, df)
         return s, js_resources, css_resources, script, div
+
+def get_load_json(ticker):
+    # https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=byL6HFiAJCnKKXttWCW7
+    print ticker
+    quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
+    serviceURL = 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?'
+#    url = serviceURL + 'ticker=' + app.vars['ticker'] + '&api_key=' + quandl.ApiConfig.api_key
+    url = serviceURL + 'ticker=' + ticker + '&api_key=' + quandl.ApiConfig.api_key
+    print url
+    r = requests.get(url)
+    data_json = r.json()
+    data_df = pd.DataFrame.from_records(data_json['datatable']["data"], columns = ['ticker', 'date', 'open', 'high', 'low', 'close', 'volume', 'ex-dividened', 'split_ratio', 'adj_open', 'adj_high', 'adj_low', 'adj_close', 'adj_volume'])
+#    data_df_date = pd.to_datetime(data_df['date'])
+    print data_df
+    return data_df
