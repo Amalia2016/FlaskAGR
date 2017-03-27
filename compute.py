@@ -12,7 +12,7 @@ import requests
 
 #import requests
 import numpy as np
-import quandl
+#import quandl
 
 import pandas as pd
 
@@ -74,10 +74,11 @@ def compute(ticker, cols):
 def get_load_json(ticker):
     # https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=byL6HFiAJCnKKXttWCW7
     print ticker
-    quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
+#    quandl.ApiConfig.api_key = 'byL6HFiAJCnKKXttWCW7'
+    api_key = 'byL6HFiAJCnKKXttWCW7'
     serviceURL = 'https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?'
 #    url = serviceURL + 'ticker=' + app.vars['ticker'] + '&api_key=' + quandl.ApiConfig.api_key
-    url = serviceURL + 'ticker=' + ticker + '&api_key=' + quandl.ApiConfig.api_key
+    url = serviceURL + 'ticker=' + ticker + '&api_key=' + api_key
     print url
     r = requests.get(url)
     data_json = r.json()
